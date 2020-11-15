@@ -10,8 +10,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact="/" component={Home} />
-        <Route exact="*" component={Error404} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="*" component={Error404} />
       </Switch>
     </Router>
   );
