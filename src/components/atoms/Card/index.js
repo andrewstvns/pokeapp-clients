@@ -3,36 +3,23 @@ import PropTypes from 'prop-types';
 import classname from 'classnames';
 import './styles.scss';
 
-import {
-  NavLink,
-  HashRouter
-} from 'react-router-dom';
-
-const Card = ({className, onClick, type, children}) => {
+const Card = ({className, image }) => {
   const classNames = classname('a-card', className);
   return (
-    <HashRouter>
-      <div className={classNames}>
-        <NavLink className='card-anchor' to='/list' replace>
-          {children} 
-        </NavLink>
-      </div>
-    </HashRouter>
+    <div className={classNames}>
+      <img src={image} alt='pokemon-image' />
+    </div>
   )
 };
 
 Card.propTypes = {
   className: PropTypes.string,
-  onClick: PropTypes.func,
-  type: PropTypes.string,
-  children: PropTypes.node,
+  image: PropTypes.string
 };
 
 Card.defaultProps = {
   className: '',
-  onClick: () => {},
-  type: 'button',
-  children: {}
+  image: ''
 };
 
 export default Card;

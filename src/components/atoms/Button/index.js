@@ -14,6 +14,7 @@ const Button = ({
   onClick,
   variant,
   route,
+  pokemonIndex,
   children
 }) => {
   const classNames = classname('a-button', className, {
@@ -24,9 +25,14 @@ const Button = ({
       {route && (
         <div className={classNames}>
           <HashRouter>
-            <NavLink to='/details' className='anchor-button' />
+            <NavLink to={`/details/${pokemonIndex}`} className='anchor-button' />
           </HashRouter>
-          <p>{children}</p>
+          <button 
+            type={type}
+            onClick={onClick}
+          >
+              {children}
+          </button>
         </div>
       )}
       {!route && (
@@ -47,6 +53,7 @@ Button.propTypes = {
   className: PropTypes.string,
   type: PropTypes.string,
   variant: PropTypes.string,
+  pokemonIndex: PropTypes.string,
   route: PropTypes.bool,
   onClick: PropTypes.func,
   children: PropTypes.node
@@ -57,6 +64,7 @@ Button.defaultProps = {
   type: 'button',
   route: false,
   variant: '',
+  pokemonIndex: '',
   onClick: () => {},
   children: {}
 };

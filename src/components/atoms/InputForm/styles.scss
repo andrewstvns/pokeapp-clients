@@ -1,0 +1,14 @@
+// import mixin and variables
+@import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
+
+.a-input-form {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.33;
+  padding: 0;
+  border-bottom: 1px solid black;
+}

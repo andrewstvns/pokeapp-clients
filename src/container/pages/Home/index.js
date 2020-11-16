@@ -19,7 +19,7 @@ class Home extends Component {
             <div className='home-content'>
               <HashRouter>
                 <Route exact path='/' component={PokemonList} />
-                <Route path='/details' component={PokemonDetails} />
+                <Route path='/details/:pokemonIndex' component={PokemonDetails} />
                 <Route path='/list' component={MyPokemonDetails} />
               </HashRouter>
             </div>

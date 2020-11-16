@@ -10,21 +10,18 @@ const CardDetail = ({
   image,
   name,
   type,
-  move
+  children
 }) => {
   const classNames = classname('m-card-detail', className);
   return (
     <div className={classNames}>
-      <Card>
-        <div className='card-detail'>
-          <img className='card-image' src={image}/>
-          <div className='card-info'>
-            <p className='text-info'>{name}</p>
-            <p className='type-info'>{type}</p>
-            <p className='type-info'>{move}</p>
-          </div>
-        </div>
-      </Card>
+      <div className='card-detail-header'>
+        <h2>{name}</h2>
+      </div>
+      <div className='card-detail'>
+        <Card image={image} />
+        {children}
+      </div>
     </div>
   )
 };
@@ -34,8 +31,7 @@ CardDetail.propTypes = {
   onClick: PropTypes.func,
   image: PropTypes.string,
   name: PropTypes.string,
-  type: PropTypes.string,
-  move: PropTypes.string
+  children: PropTypes.node
 };
 
 CardDetail.defaultProps = {
@@ -44,8 +40,7 @@ CardDetail.defaultProps = {
   type: 'button',
   image: '',
   name: '',
-  type: '',
-  move: ''
+  children: {}
 };
 
 export default CardDetail;

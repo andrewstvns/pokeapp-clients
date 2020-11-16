@@ -2,51 +2,82 @@
 @import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
 
 .m-card-detail {
-  @include clearfix();
-  .a-card {
-    .card-detail {
-      position: relative;
-      p {
-        margin-bottom: 0;
+  max-width: 700px;
+  width: 100%;
+  margin: 24px 0;
+  display: table;
+  border: 1px solid black;
+  background-color: white;
+  .card-detail-header {
+    display: table;
+    width: 100%;
+    height: 50px;
+    padding: 0 24px;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    background-color: #ebeae8;
+    h2 {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      text-transform: capitalize;
+    }
+  }
+  .card-detail {
+    .a-card {
+      @include medium {
+        display: table-cell;
+        width: 250px;
+        border: 1px solid black;
       }
-      .card-image {
-        background-color: blue;
-        width: auto;
-        height: 250px;
-        border-radius: 5px;
-        color: black;
-      }
-      .card-info {
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        padding: 0 24px 24px;
-        .text-info,
-        .type-info {
-          height: 0;
-          transition: all .25s ease;
-          overflow: hidden;
-          color: black;
+    }
+    .card-information {
+      display: table-cell;
+      border: 1px solid black;
+      vertical-align: top;
+      padding: 30px 12px;
+      ul {
+        li {
+          margin-right: 12px;
+          display: inline-block;
+          .type-list {
+            text-transform: uppercase;
+            color: #fff;
+            padding: 4px 12px;
+            margin-bottom: 12px;
+            display: block;
+          }
+          &:last-child {
+            margin-right: 0;
+          }
         }
       }
     }
-    &:hover {
-      transform: translateY(-5px);
-      .card-info {
-        .text-info {
-          height: 3.2rem;
-          font-size: 2.4rem;
-          margin-bottom: 0.8rem;
-          @include large {
-            font-size: 3.2rem;
+    .card-moves-list {
+      height: 300px;
+      overflow: hidden;
+      overflow-y: scroll;
+      h2 {
+        width: 100%;
+        height: 50px;
+        padding: 0 24px;
+        border-bottom: 1px solid rgba(0,0,0,.125);
+        background-color: #ebeae8;
+        text-align: center;
+        padding: 16px 0;
+        margin-bottom: 0;
+      }
+      ul {
+        padding: 16px 24px;
+        li {
+          .moves-index {
+            font-size: 16px;
+            display: inline-block;
+            width: 70px;
           }
-        }
-        .type-info {
-          height: 2.4rem;
-          font-size: 1.4rem;
-          @include large {
-            font-size: 1.6rem;
+          .moves-list {
+            display: inline-block;
+            font-size: 16px;
+            text-transform: capitalize;
           }
         }
       }

@@ -1,0 +1,66 @@
+// import mixin and variables
+@import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
+
+.m-popup {
+  overflow-wrap: break-word;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 5;
+  .inner-popup {
+    display: table;
+    width: 100%;
+    height: 100%;
+    padding: 64px 0px;
+    background-color: rgba(0,0,0,.5);
+    table-layout: fixed;
+    .centered-popup {
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .content-popup {
+      text-align: center;
+      border-radius: 12px;
+      background-color: #fff;
+      position: relative;
+      max-width: 648px;
+      height: 250px;
+      width: 100%;
+      margin: 0 auto;
+      z-index: 1;
+      box-shadow: 0 2px 6px 0 rgba(#000, 0.05);
+      padding: 56px;
+      .popup-button-close {
+        position: absolute;
+        top: 32px;
+        right: 32px;
+        width: 40px;
+        height: 40px;
+        display: block;
+        z-index: 2;
+        cursor: pointer;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        text-align: center;
+        background-color: transparent;
+        .arrow-back {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+      .submit-popup {
+        padding: 32px;
+        .a-input-form {
+          margin-bottom: 24px;
+        }
+      }
+    }
+  }
+}
