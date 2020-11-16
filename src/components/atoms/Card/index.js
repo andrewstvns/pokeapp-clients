@@ -7,7 +7,7 @@ const Card = ({className, image }) => {
   const classNames = classname('a-card', className);
   return (
     <div className={classNames}>
-      <img src={image} alt='pokemon-image' />
+      <img src={image} alt='pokemon-img' />
     </div>
   )
 };
