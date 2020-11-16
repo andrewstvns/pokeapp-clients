@@ -478,20 +478,9 @@ html {
   position: relative;
 }
 
-a {
-  color: blue;
-  cursor: pointer;
-  outline: 0;
-
-  &:hover {
-    color: darken(blue, 25%);
-  }
-}
-
 a img {
   border: none;
 }
-
 input,
 textarea {
   outline: 0;
@@ -550,7 +539,7 @@ ol {
 
   li {
     margin: 0;
-    padding: 0 0 0 12px;
+    padding: 0
   }
 }
 
@@ -580,28 +569,7 @@ ol {
 }
 
 ul {
-  margin-left: 32px;
-  list-style-type: square;
-
-  li {
-    padding-left: 8px;
-  }
-
-  ul {
-    list-style-type: disc;
-
-    ul {
-      list-style-type: square;
-
-      ul {
-        list-style-type: disc;
-
-        ul {
-          list-style-type: square;
-        }
-      }
-    }
-  }
+  list-style-type: none;
 
   table {
     margin: 16px 0;

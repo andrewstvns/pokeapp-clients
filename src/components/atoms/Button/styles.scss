@@ -1,0 +1,56 @@
+// import mixin and variables
+@import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
+
+.a-button {
+  width: 100%;
+  height: 50px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+  margin-right: 24px;
+  border: 1px solid #989c97;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: capitalize;
+  transition: all .25s ease;
+  &:hover {
+    background-color: #989c97;
+  }
+  &.route {
+    position: relative;
+    background-color: #fff;
+    z-index: 1;
+    &:hover {
+      background-color: #989c97;
+    }
+    .anchor-button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+    button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 14px;
+      text-transform: capitalize;
+      background-color: transparent;
+    }
+  }
+  @include medium {
+    width: 48%;
+    &.route {
+      float: left;
+    }
+  }
+  @include large {
+    max-width: 215px;
+    width: 100%;
+    &.route {
+      float: left;
+    }
+  }
+}
