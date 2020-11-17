@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Header } from 'components';
 import './styles.scss';
 
 import {
@@ -14,6 +15,7 @@ class Home extends Component {
   render() {
     return (
       <div className='p-home'>
+        <Header />
         <div className='container'>
           <div className='row'>
             <div className='home-content'>

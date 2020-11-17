@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from "axios";
+import axios from 'axios';
 import PokemonListRoute from './componentsRender/PokemonListRoute';
 class PokemonList extends Component {
   state = {
@@ -26,7 +26,7 @@ class PokemonList extends Component {
         <ul>
           {getPokemon.map((val, idx) => {
             return (
-              <li key={`pkmn-${idx}`}>
+              <li key={idx} className='pokemon-list'>
                 <PokemonListRoute name={val.name} url={val.url} />
               </li>
             )

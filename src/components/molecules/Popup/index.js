@@ -11,11 +11,17 @@ const Popup = ({
   id,
   value,
   name,
+  showPopup,
+  submit,
   onChange,
   onClick,
-  handleClickClosePopup
+  handleClickClosePopup,
+  children
 }) => {
-  const classNames = classname('m-popup', className);
+  const classNames = classname('m-popup', className, {
+    'show-popup': showPopup,
+    'release': !submit
+  });
   return (
     <div className={classNames}>
       <div className='inner-popup'>
@@ -28,23 +34,38 @@ const Popup = ({
             >
               <img src={BackButton} alt='back-button' className='arrow-back' />
             </button>
-            <div className='submit-popup'>
-              <InputForm 
-                id={id}
-                type='text'
-                name={name}
-                value={value}
-                placeholder='Input Nickname'
-                onChange={onChange}
-              />
-              <Button
-                className='popup-submit'
-                type='button'
-                onClick={onClick}
-              >
-                Submit
-              </Button>
-            </div>
+            {submit && (
+              <div className='submit-popup'>
+                <InputForm 
+                  id={id}
+                  type='text'
+                  name={name}
+                  value={value}
+                  placeholder='Input Nickname'
+                  onChange={onChange}
+                />
+                <Button
+                  className='popup-submit'
+                  type='button'
+                  onClick={onClick}
+                >
+                  Submit
+                </Button>
+              </div>
+            )}
+            {!submit && (
+              <div className='detail-popup'>
+                <h2>Release Pokemon ?</h2>
+                {children}
+                <Button
+                  className='popup-submit'
+                  type='button'
+                  onClick={onClick}
+                >
+                  Release
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -57,9 +78,12 @@ Popup.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   value: PropTypes.string,
+  showPopup: PropTypes.bool,
+  submit: PropTypes.bool,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
-  handleClickClosePopup: PropTypes.func
+  handleClickClosePopup: PropTypes.func,
+  children: PropTypes.node
 };
 
 Popup.defaultProps = {
@@ -67,9 +91,12 @@ Popup.defaultProps = {
   id: '',
   name: '',
   value: '',
+  showPopup: false,
+  submit: false,
   onChange: '',
   onClick: () => {},
-  handleClickClosePopup: () => {}
+  handleClickClosePopup: () => {},
+  children: {}
 };
 
 export default Popup;

@@ -1,29 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, CardDetail, Popup } from 'components';
+import TypeColors from 'helper';
 import BackButton from 'assets/images/arrow-left.png';
-
-
-const type_colors = {
-  bug: 'B1C12E',
-  dark: '4F3A2D',
-  dragon: '755EDF',
-  electric: 'FCBC17',
-  fairy: 'F4B1F4',
-  fighting: '823551D',
-  fire: 'E73B0C',
-  flying: 'A3B3F7',
-  ghost: '6060B2',
-  grass: '74C236',
-  ground: 'D3B357',
-  ice: 'A3E7FD',
-  normal: 'C8C4BC',
-  poison: '934594',
-  psychic: 'ED4882',
-  rock: 'B9A156',
-  steel: 'B5B5C3',
-  water: '3295F6'
-}
 class PokemonDetails extends Component {
   state = {
     isLoading: false,
@@ -31,9 +10,19 @@ class PokemonDetails extends Component {
     name: '',
     types: [],
     moves: [],
+    bgColor: '',
+    stats: {
+      hp: '',
+      attack: '',
+      defense: '',
+      specialAttack: '',
+      specialDefense: '',
+      speed: ''
+    },
     catchPokemon: 'Catch',
     imageUrl: '',
     inputNickName: '',
+    showPopup: false,
   };
 
   componentDidMount() {
@@ -49,28 +38,77 @@ class PokemonDetails extends Component {
     let moves = res.data.moves.map(val => (
       val.move.name
     ));
+    let { 
+      hp, 
+      attack, 
+      defense, 
+      specialAttack, 
+      specialDefense,
+      speed
+    } = '';
+    res.data.stats.map(val => {
+      let statName = val.stat.name;
+      switch(statName) {
+        case 'hp' :
+          hp = val['base_stat']
+          break;
+        case 'attack' :
+          attack = val['base_stat']
+          break;
+        case 'defense' :
+          defense = val['base_stat']
+          break;
+        case 'special-attack' :
+          specialAttack = val['base_stat']
+          break;
+        case 'special-defense' :
+          specialDefense = val['base_stat']
+          break;
+        case 'speed' :
+          speed = val['base_stat']
+          break;
+        default:
+          break;
+      };
+      return res;
+    });
     this.setState({ 
       getPokemonDetail: res.data,
       name: res.data.name,
       imageUrl: res.data.sprites.front_default,
       types: types,
-      moves: moves
+      moves: moves,
+      bgColor: res.data.types[0].type.name,
+      stats: {
+        hp: hp,
+        attack: attack,
+        defense: defense,
+        specialAttack: specialAttack,
+        specialDefense: specialDefense,
+        speed: speed
+      }
     });
   };
  
   handleClickButton = () => {
-    console.log('click');
-    var d = Math.random();
-    if (d < 0.5) {
-        // 50% chance of being here
+    let val = Math.random();
+    if (val < 0.5) {
         this.setState({
-          catchPokemon: 'Succes catch pokemon!'
+          catchPokemon: 'Succes catch pokemon!',
+          showPopup: true
         });
     } else {
       this.setState({
-        catchPokemon: 'Failed catch pokemon!'
+        catchPokemon: 'Failed catch pokemon!',
+        showPopup: false
       });
     }
+  };
+
+  handleClosePopup = () => {
+    this.setState({
+      showPopup: false
+    });
   };
 
   handleClickBack = () => {
@@ -90,14 +128,25 @@ class PokemonDetails extends Component {
     const {
       handleClickButton,
       handleClickBack,
+      handleClosePopup,
       handleChangeFormText,
       state: { 
         name, 
         imageUrl, 
         types, 
         moves,
+        bgColor,
+        stats: {
+          hp,
+          attack,
+          defense,
+          specialAttack,
+          specialDefense,
+          speed
+        },
         catchPokemon,
-        inputNickName
+        inputNickName,
+        showPopup
       }
     } = this;
     return (
@@ -108,15 +157,21 @@ class PokemonDetails extends Component {
           </button>
         </div>
         <div className='card-wrapper'>
-          <CardDetail name={name} image={imageUrl}>
+          <CardDetail 
+            name={name} 
+            image={imageUrl}
+            style={{
+              backgroundColor: `#${TypeColors[bgColor]}`
+            }}
+          >
             <div className='card-information'>
-              <ul>
-                {types.map(val => (
-                  <li key={val}>
+              <ul className='card-type'>
+                {types.map((val, idx) => (
+                  <li key={idx}>
                     <p 
                       className='type-list'
                       style={{
-                        backgroundColor: `#${type_colors[val]}`
+                        backgroundColor: `#${TypeColors[val]}`
                       }}
                     >
                         {val}
@@ -124,12 +179,99 @@ class PokemonDetails extends Component {
                   </li>
                 ))}
               </ul>
+              <ul className='card-stats'>
+                <li className='card-stats-list'>
+                  <p>Hp :</p>
+                  <div className='card-stats-name'>
+                    <div 
+                      className='card-stats-bar'
+                      style={{
+                        width: `${hp}%`
+                      }}
+                    >
+                      {hp}
+                    </div>
+                  </div>
+                </li>
+                <li className='card-stats-list'>
+                  <p>Attack :</p>
+                  <div className='card-stats-name'>
+                    <div 
+                      className='card-stats-bar'
+                      style={{
+                        width: `${attack}%`
+                      }}
+                    >
+                      {attack}
+                    </div>
+                  </div>
+                </li>
+                <li className='card-stats-list'>
+                  <p>Defense :</p>
+                  <div className='card-stats-name'>
+                    <div 
+                      className='card-stats-bar'
+                      style={{
+                        width: `${defense}%`
+                      }}
+                    >
+                      {defense}
+                    </div>
+                  </div>
+                </li>
+                <li className='card-stats-list'>
+                  <p>Special Attack :</p>
+                  <div className='card-stats-name'>
+                    <div 
+                      className='card-stats-bar'
+                      style={{
+                        width: `${specialAttack}%`
+                      }}
+                    >
+                      {specialAttack}
+                    </div>
+                  </div>
+                </li>
+                <li className='card-stats-list'>
+                  <p>Special Defense :</p>
+                  <div className='card-stats-name'>
+                    <div 
+                      className='card-stats-bar'
+                      style={{
+                        width: `${specialDefense}%`
+                      }}
+                    >
+                      {specialDefense}
+                    </div>
+                  </div>
+                </li>
+                <li className='card-stats-list'>
+                  <p>Speed :</p>
+                  <div className='card-stats-name'>
+                    <div 
+                      className='card-stats-bar'
+                      style={{
+                        width: `${speed}%`
+                      }}
+                    >
+                      {speed}
+                    </div>
+                  </div>
+                </li>
+              </ul>
             </div>
             <div className='card-moves-list'>
-              <h2>Moves List</h2>
+              <div 
+                className='card-moves-header'
+                style={{
+                  backgroundColor: `#${TypeColors[bgColor]}`
+                }}
+              >
+                <h2>Moves List</h2>
+              </div>
               <ul>
                 {moves.map((val, idx) => (
-                  <li key={val}>
+                  <li key={idx}>
                     <span className='moves-index'>{idx+1}</span>
                     <p className='moves-list'>{val}</p>
                   </li>
@@ -142,14 +284,17 @@ class PokemonDetails extends Component {
             <Button onClick={handleClickButton}>
               {catchPokemon}
             </Button>
-            {/* <Popup 
+            <Popup 
               id='inputNickName'
               type='text'
               name='inputNickName'
+              showPopup={showPopup}
+              submit
               value={inputNickName}
               placeholder='Input Nickname'
               onChange={handleChangeFormText}
-            /> */}
+              handleClickClosePopup={handleClosePopup}
+            />
         </div>
       </div>
     )

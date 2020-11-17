@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button } from 'components';
+import { CardDetailList } from 'components';
 class PokemonListRoute extends Component {
   state = {
     name: '',
+    image: '',
     pokemonIndex: ''
   };
 
@@ -13,18 +14,26 @@ class PokemonListRoute extends Component {
   async handleGetData() {
     const { name, url } = this.props;
     let getIndex = url.split('/')[url.split('/').length - 2];
+    const imageUrl = `https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/${getIndex}.png?raw=true`;
     this.setState({
       name: name,
+      image: imageUrl,
       pokemonIndex: getIndex
     });
   };
 
   render() {
     const {
-      handleClickButton,
-      state: { name, pokemonIndex }
+      state: { name, image, pokemonIndex }
     } = this;
-    return <Button route pokemonIndex={pokemonIndex}>{name}</Button>
+    return (
+      <CardDetailList 
+        link 
+        pokemonIndex={pokemonIndex} 
+        image={image}
+        name={name}
+      />
+    )
   };
 }
 

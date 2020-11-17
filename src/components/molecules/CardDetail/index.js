@@ -9,13 +9,16 @@ const CardDetail = ({
   className,
   image,
   name,
-  type,
+  style,
   children
 }) => {
   const classNames = classname('m-card-detail', className);
   return (
     <div className={classNames}>
-      <div className='card-detail-header'>
+      <div 
+        className='card-detail-header' 
+        style={style}
+      >
         <h2>{name}</h2>
       </div>
       <div className='card-detail'>
@@ -31,15 +34,16 @@ CardDetail.propTypes = {
   onClick: PropTypes.func,
   image: PropTypes.string,
   name: PropTypes.string,
+  style: PropTypes.string,
   children: PropTypes.node
 };
 
 CardDetail.defaultProps = {
   className: '',
   onClick: () => {},
-  type: 'button',
   image: '',
   name: '',
+  style: '',
   children: {}
 };
 
