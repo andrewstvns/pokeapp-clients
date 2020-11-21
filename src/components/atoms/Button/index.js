@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import classname from 'classnames';
 import './styles.scss';
 
-import {
-  NavLink,
-  HashRouter
-} from 'react-router-dom';
+import { NavLink, HashRouter } from 'react-router-dom';
 
 const Button = ({
   className,
@@ -15,34 +12,34 @@ const Button = ({
   variant,
   route,
   pokemonIndex,
-  children
+  children,
 }) => {
   const classNames = classname('a-button', className, {
-    route: route
+    route: route,
   });
   return (
     <Fragment>
       {route && (
         <div className={classNames}>
           <HashRouter>
-            <NavLink to={`/details/${pokemonIndex}`} className='anchor-button' />
+            <NavLink
+              to={`/details/${pokemonIndex}`}
+              className="anchor-button"
+            />
           </HashRouter>
-          <button 
-            type={type}
-            onClick={onClick}
-          >
-              {children}
+          <button type={type} onClick={onClick}>
+            {children}
           </button>
         </div>
       )}
       {!route && (
-        <button 
-          className={classNames} 
-          type={type} 
-          variant={variant} 
+        <button
+          className={classNames}
+          type={type}
+          variant={variant}
           onClick={onClick}
         >
-            {children}
+          {children}
         </button>
       )}
     </Fragment>
@@ -56,7 +53,7 @@ Button.propTypes = {
   pokemonIndex: PropTypes.string,
   route: PropTypes.bool,
   onClick: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 Button.defaultProps = {
@@ -66,7 +63,7 @@ Button.defaultProps = {
   variant: '',
   pokemonIndex: '',
   onClick: () => {},
-  children: {}
+  children: {},
 };
 
 export default Button;

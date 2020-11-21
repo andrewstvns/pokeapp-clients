@@ -6,17 +6,16 @@ import {
 } from 'react-router-dom';
 
 // Components
-import { Home, Error404 } from '../pages'; 
+import { Home } from '../pages'; 
 
 function App() {
   return (
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="*" component={Error404} />
       </Switch>
     </Router>
   );
-};
+}
 
 export default App;

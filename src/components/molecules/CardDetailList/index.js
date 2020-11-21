@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classname from 'classnames';
@@ -6,7 +7,7 @@ import './styles.scss';
 
 import { Button, Card } from 'components';
 
-import Fade from 'react-reveal/Fade'
+import Fade from 'react-reveal/Fade';
 import ReactPlaceholder from 'react-placeholder';
 import 'react-placeholder/lib/reactPlaceholder.css';
 import Skeleton from './skeletonComponents';
@@ -20,7 +21,7 @@ const CardDetailList = ({
   name,
   pokemonIndex,
   onClick,
-  data
+  data,
 }) => {
   const [ready, setReady] = useState(false);
 
@@ -29,66 +30,68 @@ const CardDetailList = ({
       setReady(true);
     }, 2000);
   }, [ready]);
-  
+
   const placeholder = (
-    <div className='m-card-detail-list'>
+    <div className="m-card-detail-list">
       <Skeleton />
     </div>
   );
 
   const classNames = classname('m-card-detail-list', className, {
-    link: link
+    link: link,
   });
   return (
     <ReactPlaceholder
       showLoadingAnimation
       customPlaceholder={placeholder}
       ready={ready}
-    >      
-    <Fade duration={300}>
-      <div className={classNames}>
-        {link && (
-          <Fragment>
-            <div className='button-detail'>
-              <Button onClick={onClick}>Detail</Button>
-            </div>
-            <HashRouter>
-              <NavLink to={`/details/${pokemonIndex}`} />
-            </HashRouter>
-            <Card image={image} />
-            <div className='pokemon-list-info'>
-              <p className='pokemon-name'>{name}</p>
-            </div>
-          </Fragment>
-        )}
-        {!link && (
-          <Fragment>
-              <div className='button-detail'>
-              <Button onClick={onClick}>Release</Button>
-            </div>
-            <Card image={data.sprites.front_default} />
-            <div className='pokemon-list-info'>
-              <div className='pokemon-list-type'>
-                <ul>
-                  {data.types.map((val, idx) => (
-                    <li key={idx}>
-                      <p 
-                        style={{ backgroundColor: `#${TypeColors[val.type.name]}`}}
-                      >
-                        {val.type.name}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
+    >
+      <Fade duration={300}>
+        <div className={classNames}>
+          {link && (
+            <Fragment>
+              <div className="button-detail">
+                <Button onClick={onClick}>Detail</Button>
               </div>
-              <p className='pokemon-name'>{data.name}</p>
-            </div>
-          </Fragment>
-        )}
-      </div>
-    </Fade>
+              <HashRouter>
+                <NavLink to={`/details/${pokemonIndex}`} />
+              </HashRouter>
+              <Card image={image} />
+              <div className="pokemon-list-info">
+                <p className="pokemon-name">{name}</p>
+              </div>
+            </Fragment>
+          )}
+          {!link && (
+            <Fragment>
+              <div className="button-detail">
+                <Button onClick={onClick}>Release</Button>
+              </div>
+              <Card image={data.sprites.front_default} />
+              <div className="pokemon-list-info">
+                <div className="pokemon-list-type">
+                  <ul>
+                    {data.types.map((val, idx) => (
+                      <li key={idx}>
+                        <p
+                          style={{
+                            backgroundColor: `#${TypeColors[val.type.name]}`,
+                          }}
+                        >
+                          {val.type.name}
+                        </p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="pokemon-name">{data.name}</p>
+              </div>
+            </Fragment>
+          )}
+        </div>
+      </Fade>
     </ReactPlaceholder>
-  )
+  );
 };
 
 CardDetailList.propTypes = {
@@ -97,7 +100,7 @@ CardDetailList.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
   pokemonIndex: PropTypes.string,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 CardDetailList.defaultProps = {
@@ -106,7 +109,7 @@ CardDetailList.defaultProps = {
   image: '',
   name: '',
   pokemonIndex: '',
-  onClick: () => {}
+  onClick: () => {},
 };
 
 export default CardDetailList;

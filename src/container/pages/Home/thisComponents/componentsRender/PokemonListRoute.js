@@ -1,15 +1,16 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import { CardDetailList } from 'components';
 class PokemonListRoute extends Component {
   state = {
     name: '',
     image: '',
-    pokemonIndex: ''
+    pokemonIndex: '',
   };
 
   componentDidMount() {
     this.handleGetData();
-  };
+  }
 
   async handleGetData() {
     const { name, url } = this.props;
@@ -18,23 +19,23 @@ class PokemonListRoute extends Component {
     this.setState({
       name: name,
       image: imageUrl,
-      pokemonIndex: getIndex
+      pokemonIndex: getIndex,
     });
-  };
+  }
 
   render() {
     const {
-      state: { name, image, pokemonIndex }
+      state: { name, image, pokemonIndex },
     } = this;
     return (
-      <CardDetailList 
-        link 
-        pokemonIndex={pokemonIndex} 
+      <CardDetailList
+        link
+        pokemonIndex={pokemonIndex}
         image={image}
         name={name}
       />
-    )
-  };
+    );
+  }
 }
 
 export default PokemonListRoute;

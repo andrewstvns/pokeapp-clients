@@ -1,5 +1,7 @@
 // import mixin and variables
-@import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
+@import '../../../assets/styles/helper/function',
+  '../../../assets/styles/helper/mixin',
+  '../../../assets/styles/helper/variables';
 
 .a-button {
   width: 100%;
@@ -13,7 +15,7 @@
   cursor: pointer;
   font-size: 14px;
   text-transform: capitalize;
-  transition: all .25s ease;
+  transition: all 0.25s ease;
   &:hover {
     background-color: #ff7575;
   }

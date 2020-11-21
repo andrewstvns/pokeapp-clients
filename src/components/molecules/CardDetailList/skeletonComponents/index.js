@@ -14,7 +14,7 @@ const SkeletonCardDetailList = () => {
   const bgColor = 'rgba(163, 160, 160, 0.7)';
   const arrSkeleton = [];
   const contentSkeleton = (
-    <div className='card-detail-list-wrapper'>
+    <div className="card-detail-list-wrapper">
       <RectShape color={bgColor} />
     </div>
   );
@@ -24,7 +24,7 @@ const SkeletonCardDetailList = () => {
   }
 
   return (
-    <div className='container-skeleton'>
+    <div className="container-skeleton">
       <RectShape color={bgColor} />
     </div>
   );

@@ -4,37 +4,37 @@ import PokemonListRoute from './componentsRender/PokemonListRoute';
 class PokemonList extends Component {
   state = {
     isLoading: false,
-    getPokemon: []
+    getPokemon: [],
   };
 
   componentDidMount() {
     this.handleGetData();
-  };
+  }
 
   async handleGetData() {
     const res = await axios.get('/pokemon');
-    this.setState({ getPokemon: res.data.results});
-  };
+    this.setState({ getPokemon: res.data.results });
+  }
 
   render() {
     const {
-      state: { getPokemon }
+      state: { getPokemon },
     } = this;
     return (
-      <div className='content-pokemon-list'>
+      <div className="content-pokemon-list">
         <h2>Pokemon List</h2>
         <ul>
           {getPokemon.map((val, idx) => {
             return (
-              <li key={idx} className='pokemon-list'>
+              <li key={idx} className="pokemon-list">
                 <PokemonListRoute name={val.name} url={val.url} />
               </li>
-            )
+            );
           })}
         </ul>
       </div>
-    )
-  };
-};
+    );
+  }
+}
 
 export default PokemonList;

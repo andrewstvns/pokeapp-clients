@@ -1,4 +1,4 @@
-import React, { useState,} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classname from 'classnames';
 import CloseButton from 'assets/images/icon-close.png';
@@ -17,59 +17,58 @@ const Popup = ({
   onChange,
   onClick,
   handleClickClosePopup,
-  children
+  children,
 }) => {
-
   const onClickClosePopup = () => {
     handleClickClosePopup();
     document.body.classList.remove('remove-scroll');
-  }
+  };
   const classNames = classname('m-popup', className, {
     'show-popup': showPopup,
-    'release': !submit
+    release: !submit,
   });
   return (
     <div className={classNames}>
-      <div className='inner-popup'>
-        <div className='centered-popup'>
-          <div className='content-popup'>
+      <div className="inner-popup">
+        <div className="centered-popup">
+          <div className="content-popup">
             <button
-              className='popup-button-close'
-              type='button'
+              className="popup-button-close"
+              type="button"
               onClick={onClickClosePopup}
             >
-              <img src={CloseButton} alt='back-button' className='arrow-close' />
+              <img
+                src={CloseButton}
+                alt="back-button"
+                className="arrow-close"
+              />
             </button>
             {submit && (
-              <div className='submit-popup'>
+              <div className="submit-popup">
                 <h2>{title}</h2>
-                <InputForm 
+                <InputForm
                   id={id}
-                  type='text'
+                  type="text"
                   name={name}
                   value={value}
-                  placeholder='Input Nickname'
+                  placeholder="Input Nickname"
                   onChange={onChange}
                 />
                 <Button
-                  className='popup-submit'
-                  type='button'
+                  className="popup-submit"
+                  type="button"
                   onClick={onClick}
                 >
                   Submit
                 </Button>
               </div>
             )}
-            {!submit && (
-              <div className='detail-popup'>
-                {children}
-              </div>
-            )}
+            {!submit && <div className="detail-popup">{children}</div>}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 };
 
 Popup.propTypes = {
@@ -83,7 +82,7 @@ Popup.propTypes = {
   onChange: PropTypes.func,
   onClick: PropTypes.func,
   handleClickClosePopup: PropTypes.func,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 Popup.defaultProps = {
@@ -97,7 +96,7 @@ Popup.defaultProps = {
   onChange: () => {},
   onClick: () => {},
   handleClickClosePopup: () => {},
-  children: {}
+  children: {},
 };
 
 export default Popup;

@@ -16,7 +16,7 @@ const type_colors = {
   psychic: 'ED4882',
   rock: 'B9A156',
   steel: 'B5B5C3',
-  water: '3295F6'
+  water: '3295F6',
 };
 
 export default type_colors;

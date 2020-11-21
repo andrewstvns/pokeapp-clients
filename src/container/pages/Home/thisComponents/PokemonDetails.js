@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
@@ -6,7 +7,7 @@ import TypeColors from 'helper';
 import BackButton from 'assets/images/arrow-left.png';
 
 // skeleton
-import Fade from 'react-reveal/Fade'
+import Fade from 'react-reveal/Fade';
 import ReactPlaceholder from 'react-placeholder';
 import 'react-placeholder/lib/reactPlaceholder.css';
 import Skeleton from './skeletonComponents';
@@ -25,14 +26,13 @@ class PokemonDetails extends Component {
       defense: '',
       specialAttack: '',
       specialDefense: '',
-      speed: ''
+      speed: '',
     },
-    catchPokemon: 'Catch',
     imageUrl: '',
     inputNickName: '',
     showPopup: false,
     showPopupFailed: false,
-    loadAnimation: false
+    loadAnimation: false,
   };
 
   componentDidMount() {
@@ -42,52 +42,41 @@ class PokemonDetails extends Component {
       document.body.classList.remove('load-skeleton');
     }, 2000);
     this.handleData();
-  };
+  }
 
-  async handleData () {
+  async handleData() {
     const { pokemonIndex } = this.props.match.params;
     const res = await axios.get(`/pokemon/${pokemonIndex}`);
-    let types = res.data.types.map(val => (
-      val.type.name
-    ));
-    let moves = res.data.moves.map(val => (
-      val.move.name
-    ));
-    let { 
-      hp, 
-      attack, 
-      defense, 
-      specialAttack, 
-      specialDefense,
-      speed
-    } = '';
-    res.data.stats.map(val => {
+    let types = res.data.types.map((val) => val.type.name);
+    let moves = res.data.moves.map((val) => val.move.name);
+    let { hp, attack, defense, specialAttack, specialDefense, speed } = '';
+    res.data.stats.map((val) => {
       let statName = val.stat.name;
-      switch(statName) {
-        case 'hp' :
-          hp = val['base_stat']
+      switch (statName) {
+        case 'hp':
+          hp = val['base_stat'];
           break;
-        case 'attack' :
-          attack = val['base_stat']
+        case 'attack':
+          attack = val['base_stat'];
           break;
-        case 'defense' :
-          defense = val['base_stat']
+        case 'defense':
+          defense = val['base_stat'];
           break;
-        case 'special-attack' :
-          specialAttack = val['base_stat']
+        case 'special-attack':
+          specialAttack = val['base_stat'];
           break;
-        case 'special-defense' :
-          specialDefense = val['base_stat']
+        case 'special-defense':
+          specialDefense = val['base_stat'];
           break;
-        case 'speed' :
-          speed = val['base_stat']
+        case 'speed':
+          speed = val['base_stat'];
           break;
         default:
           break;
-      };
+      }
       return res;
     });
-    this.setState({ 
+    this.setState({
       getPokemonDetail: res.data,
       name: res.data.name,
       imageUrl: res.data.sprites.front_default,
@@ -100,21 +89,20 @@ class PokemonDetails extends Component {
         defense: defense,
         specialAttack: specialAttack,
         specialDefense: specialDefense,
-        speed: speed
-      }
+        speed: speed,
+      },
     });
-  };
- 
+  }
+
   handleClickButton = () => {
     let val = Math.random();
     if (val < 0.5) {
       this.setState({ loadAnimation: true });
-      
+
       setTimeout(() => {
         this.setState({
           loadAnimation: false,
-          catchPokemon: 'Succes catch pokemon!',
-          showPopup: true
+          showPopup: true,
         });
       }, 2000);
     } else {
@@ -122,9 +110,8 @@ class PokemonDetails extends Component {
 
       setTimeout(() => {
         this.setState({
-          loadAnimation: false, 
-          catchPokemon: 'Failed catch pokemon!',
-          showPopupFailed: true
+          loadAnimation: false,
+          showPopupFailed: true,
         });
       }, 2000);
     }
@@ -135,8 +122,8 @@ class PokemonDetails extends Component {
 
     setTimeout(() => {
       this.setState({
-        loadAnimation: false, 
-        showPopup: false
+        loadAnimation: false,
+        showPopup: false,
       });
     }, 2000);
   };
@@ -144,26 +131,26 @@ class PokemonDetails extends Component {
   handleClosePopup = () => {
     this.setState({
       showPopup: false,
-      showPopupFailed: false
+      showPopupFailed: false,
     });
   };
 
   handleClickBack = () => {
     const {
-      history: { goBack }
+      history: { goBack },
     } = this.props;
     goBack();
   };
-  
+
   handleChangeFormText = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   render() {
     const placeholder = (
-      <div className='m-card-detail'>
+      <div className="m-card-detail">
         <Skeleton />
       </div>
     );
@@ -174,137 +161,129 @@ class PokemonDetails extends Component {
       handleSubmit,
       handleClosePopup,
       handleChangeFormText,
-      state: { 
+      state: {
         isLoading,
-        name, 
-        imageUrl, 
-        types, 
+        name,
+        imageUrl,
+        types,
         moves,
         bgColor,
-        stats: {
-          hp,
-          attack,
-          defense,
-          specialAttack,
-          specialDefense,
-          speed
-        },
-        catchPokemon,
+        stats: { hp, attack, defense, specialAttack, specialDefense, speed },
         inputNickName,
         showPopup,
         showPopupFailed,
-        loadAnimation
-      }
+        loadAnimation,
+      },
     } = this;
     return (
       <ReactPlaceholder
         showLoadingAnimation
         customPlaceholder={placeholder}
         ready={isLoading}
-      >   
-        <div className='content-pokemon-details'>
-          <div className='back-button-wrapper'>
-            <button onClick={handleClickBack} className='back-button'>
-              <img src={BackButton} alt='back-button' className='arrow-back' />
+      >
+        <div className="content-pokemon-details">
+          <div className="back-button-wrapper">
+            <button onClick={handleClickBack} className="back-button">
+              <img src={BackButton} alt="back-button" className="arrow-back" />
             </button>
           </div>
-          <div className='card-wrapper'>
-            <Fade>              
-              <CardDetail 
-                name={name} 
+          <div className="card-wrapper">
+            <Fade>
+              <CardDetail
+                name={name}
                 image={imageUrl}
                 style={{
-                  backgroundColor: `#${TypeColors[bgColor]}`
+                  backgroundColor: `#${TypeColors[bgColor]}`,
                 }}
               >
-                <div className='card-information'>
-                  <ul className='card-type'>
+                <div className="card-information">
+                  <ul className="card-type">
                     {types.map((val, idx) => (
                       <li key={idx}>
-                        <p 
-                          className='type-list'
+                        <p
+                          className="type-list"
                           style={{
-                            backgroundColor: `#${TypeColors[val]}`
+                            backgroundColor: `#${TypeColors[val]}`,
                           }}
                         >
-                            {val}
+                          {val}
                         </p>
                       </li>
                     ))}
                   </ul>
-                  <ul className='card-stats'>
-                    <li className='card-stats-list'>
+                  <ul className="card-stats">
+                    <li className="card-stats-list">
                       <p>Hp :</p>
-                      <div className='card-stats-name'>
-                        <div 
-                          className='card-stats-bar'
+                      <div className="card-stats-name">
+                        <div
+                          className="card-stats-bar"
                           style={{
-                            width: `${hp}%`
+                            width: `${hp}%`,
                           }}
                         >
                           {hp}
                         </div>
                       </div>
                     </li>
-                    <li className='card-stats-list'>
+                    <li className="card-stats-list">
                       <p>Attack :</p>
-                      <div className='card-stats-name'>
-                        <div 
-                          className='card-stats-bar'
+                      <div className="card-stats-name">
+                        <div
+                          className="card-stats-bar"
                           style={{
-                            width: `${attack}%`
+                            width: `${attack}%`,
                           }}
                         >
                           {attack}
                         </div>
                       </div>
                     </li>
-                    <li className='card-stats-list'>
+                    <li className="card-stats-list">
                       <p>Defense :</p>
-                      <div className='card-stats-name'>
-                        <div 
-                          className='card-stats-bar'
+                      <div className="card-stats-name">
+                        <div
+                          className="card-stats-bar"
                           style={{
-                            width: `${defense}%`
+                            width: `${defense}%`,
                           }}
                         >
                           {defense}
                         </div>
                       </div>
                     </li>
-                    <li className='card-stats-list'>
+                    <li className="card-stats-list">
                       <p>Special Attack :</p>
-                      <div className='card-stats-name'>
-                        <div 
-                          className='card-stats-bar'
+                      <div className="card-stats-name">
+                        <div
+                          className="card-stats-bar"
                           style={{
-                            width: `${specialAttack}%`
+                            width: `${specialAttack}%`,
                           }}
                         >
                           {specialAttack}
                         </div>
                       </div>
                     </li>
-                    <li className='card-stats-list'>
+                    <li className="card-stats-list">
                       <p>Special Defense :</p>
-                      <div className='card-stats-name'>
-                        <div 
-                          className='card-stats-bar'
+                      <div className="card-stats-name">
+                        <div
+                          className="card-stats-bar"
                           style={{
-                            width: `${specialDefense}%`
+                            width: `${specialDefense}%`,
                           }}
                         >
                           {specialDefense}
                         </div>
                       </div>
                     </li>
-                    <li className='card-stats-list'>
+                    <li className="card-stats-list">
                       <p>Speed :</p>
-                      <div className='card-stats-name'>
-                        <div 
-                          className='card-stats-bar'
+                      <div className="card-stats-name">
+                        <div
+                          className="card-stats-bar"
                           style={{
-                            width: `${speed}%`
+                            width: `${speed}%`,
                           }}
                         >
                           {speed}
@@ -313,11 +292,11 @@ class PokemonDetails extends Component {
                     </li>
                   </ul>
                 </div>
-                <div className='card-moves-list'>
-                  <div 
-                    className='card-moves-header'
+                <div className="card-moves-list">
+                  <div
+                    className="card-moves-header"
                     style={{
-                      backgroundColor: `#${TypeColors[bgColor]}`
+                      backgroundColor: `#${TypeColors[bgColor]}`,
                     }}
                   >
                     <h2>Moves List</h2>
@@ -325,8 +304,8 @@ class PokemonDetails extends Component {
                   <ul>
                     {moves.map((val, idx) => (
                       <li key={idx}>
-                        <span className='moves-index'>{idx+1}</span>
-                        <p className='moves-list'>{val}</p>
+                        <span className="moves-index">{idx + 1}</span>
+                        <p className="moves-list">{val}</p>
                       </li>
                     ))}
                   </ul>
@@ -334,41 +313,44 @@ class PokemonDetails extends Component {
               </CardDetail>
             </Fade>
           </div>
-          <div className='button-catch-wrapper'>
-              <Button onClick={handleClickButton}>Catch</Button>
-              <Popup 
-                id='inputNickName'
-                type='text'
-                name='inputNickName'
-                title='Success Catch Pokemon!'
-                showPopup={showPopup}
-                submit
-                value={inputNickName}
-                placeholder='Input Nickname'
-                onChange={handleChangeFormText}
-                onClick={handleSubmit}
-                handleClickClosePopup={handleClosePopup}
-              />
-              <Popup showPopup={showPopupFailed} handleClickClosePopup={handleClosePopup}>
-                <h2>Failed catch Pokemon!</h2>
-              </Popup>
+          <div className="button-catch-wrapper">
+            <Button onClick={handleClickButton}>Catch</Button>
+            <Popup
+              id="inputNickName"
+              type="text"
+              name="inputNickName"
+              title="Success Catch Pokemon!"
+              showPopup={showPopup}
+              submit
+              value={inputNickName}
+              placeholder="Input Nickname"
+              onChange={handleChangeFormText}
+              onClick={handleSubmit}
+              handleClickClosePopup={handleClosePopup}
+            />
+            <Popup
+              showPopup={showPopupFailed}
+              handleClickClosePopup={handleClosePopup}
+            >
+              <h2>Failed catch Pokemon!</h2>
+            </Popup>
           </div>
         </div>
-        <Loading show={loadAnimation}/>
+        <Loading show={loadAnimation} />
       </ReactPlaceholder>
-    )
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    totalPokemon: state.totalPokemon,
   };
 };
 
-const mapStateToProps = state => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    totalPokemon: state.totalPokemon
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    handleCatchPokemon: () => dispatch({ type: 'ADD_POKEMON '}) 
+    handleCatchPokemon: () => dispatch({ type: 'ADD_POKEMON ' }),
   };
 };
 

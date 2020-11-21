@@ -1,5 +1,7 @@
 // import mixin and variables
-@import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
+@import '../../../assets/styles/helper/function',
+  '../../../assets/styles/helper/mixin',
+  '../../../assets/styles/helper/variables';
 
 .m-header {
   width: 100%;
@@ -22,7 +24,7 @@
         padding: 1.2rem 0;
         cursor: pointer;
         color: white;
-        transition: all .25s ease;
+        transition: all 0.25s ease;
         &:hover {
           opacity: 0.6;
         }

@@ -14,7 +14,7 @@ const InputForm = ({
   onFocus,
   onKeyDown,
   spellCheck,
-  input
+  input,
 }) => {
   const classNames = classname('a-input-form', className);
   return (
@@ -33,7 +33,7 @@ const InputForm = ({
         {...input}
       />
     </Fragment>
-  )
+  );
 };
 
 InputForm.propTypes = {
@@ -47,7 +47,7 @@ InputForm.propTypes = {
   onFocus: PropTypes.func,
   onKeyDown: PropTypes.func,
   spellCheck: PropTypes.bool,
-  input: PropTypes.object
+  input: PropTypes.object,
 };
 
 InputForm.defaultProps = {
@@ -62,7 +62,7 @@ InputForm.defaultProps = {
   onFocus: () => {},
   onKeyDown: () => {},
   spellCheck: false,
-  input: {}
+  input: {},
 };
 
 export default InputForm;

@@ -1,5 +1,7 @@
 // import mixin and variables
-@import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
+@import '../../../assets/styles/helper/function',
+  '../../../assets/styles/helper/mixin',
+  '../../../assets/styles/helper/variables';
 
 .p-home {
   // background-color: #1f1f1f;
@@ -140,7 +142,7 @@
         background-color: transparent;
         cursor: pointer;
         border-radius: 50%;
-        transition: all .25s ease;
+        transition: all 0.25s ease;
         &:hover {
           left: -12px;
         }

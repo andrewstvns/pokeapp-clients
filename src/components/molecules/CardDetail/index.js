@@ -5,28 +5,19 @@ import './styles.scss';
 
 import { Card } from 'components';
 
-const CardDetail = ({
-  className,
-  image,
-  name,
-  style,
-  children
-}) => {
+const CardDetail = ({ className, image, name, style, children }) => {
   const classNames = classname('m-card-detail', className);
   return (
     <div className={classNames}>
-      <div 
-        className='card-detail-header' 
-        style={style}
-      >
+      <div className="card-detail-header" style={style}>
         <h2>{name}</h2>
       </div>
-      <div className='card-detail'>
+      <div className="card-detail">
         <Card image={image} />
         {children}
       </div>
     </div>
-  )
+  );
 };
 
 CardDetail.propTypes = {
@@ -35,7 +26,7 @@ CardDetail.propTypes = {
   image: PropTypes.string,
   name: PropTypes.string,
   style: PropTypes.object,
-  children: PropTypes.node
+  children: PropTypes.node,
 };
 
 CardDetail.defaultProps = {
@@ -44,7 +35,7 @@ CardDetail.defaultProps = {
   image: '',
   name: '',
   style: {},
-  children: {}
+  children: {},
 };
 
 export default CardDetail;
