@@ -2,7 +2,7 @@ import { ADD_POKEMON, RELEASE_POKEMON } from 'redux/action/types';
 
 const initState = {
   pokemonData: [],
-  totalPokemon: 1,
+  totalPokemon: 0,
 };
 
 const PokemonReducer = (state = initState, action) => {
