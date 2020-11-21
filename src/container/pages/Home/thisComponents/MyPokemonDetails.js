@@ -19,7 +19,7 @@ class MyPokemoDetails extends Component {
   }
 
   async handleGetData() {
-    const res = await axios.get('/pokemon');
+    const res = await axios.get('https://pokeapi.co/api/v2/pokemon');
     this.handleAllPokemon(res.data.results);
   }
 

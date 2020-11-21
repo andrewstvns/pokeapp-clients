@@ -12,7 +12,7 @@ class PokemonList extends Component {
   }
 
   async handleGetData() {
-    const res = await axios.get('/pokemon');
+    const res = await axios.get('https://pokeapi.co/api/v2/pokemon');
     this.setState({ getPokemon: res.data.results });
   }
 

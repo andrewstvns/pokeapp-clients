@@ -46,7 +46,9 @@ class PokemonDetails extends Component {
 
   async handleData() {
     const { pokemonIndex } = this.props.match.params;
-    const res = await axios.get(`/pokemon/${pokemonIndex}`);
+    const res = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}`
+    );
     let types = res.data.types.map((val) => val.type.name);
     let moves = res.data.moves.map((val) => val.move.name);
     let { hp, attack, defense, specialAttack, specialDefense, speed } = '';
@@ -115,6 +117,7 @@ class PokemonDetails extends Component {
         });
       }, 2000);
     }
+    document.body.classList.add('remove-scroll');
   };
 
   handleSubmit = () => {
@@ -126,6 +129,7 @@ class PokemonDetails extends Component {
         showPopup: false,
       });
     }, 2000);
+    document.body.classList.remove('remove-scroll');
   };
 
   handleClosePopup = () => {
@@ -133,6 +137,7 @@ class PokemonDetails extends Component {
       showPopup: false,
       showPopupFailed: false,
     });
+    document.body.classList.remove('remove-scroll');
   };
 
   handleClickBack = () => {
