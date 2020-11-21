@@ -4,7 +4,9 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
-import { Home, Error404 } from '../pages';
+
+// Components
+import { Home, Error404 } from '../pages'; 
 
 function App() {
   return (

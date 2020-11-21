@@ -34,7 +34,7 @@ CardDetail.propTypes = {
   onClick: PropTypes.func,
   image: PropTypes.string,
   name: PropTypes.string,
-  style: PropTypes.string,
+  style: PropTypes.object,
   children: PropTypes.node
 };
 
@@ -43,7 +43,7 @@ CardDetail.defaultProps = {
   onClick: () => {},
   image: '',
   name: '',
-  style: '',
+  style: {},
   children: {}
 };
 

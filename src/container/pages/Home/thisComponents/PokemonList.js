@@ -35,6 +35,6 @@ class PokemonList extends Component {
       </div>
     )
   };
-}
+};
 
 export default PokemonList;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState,} from 'react';
 import PropTypes from 'prop-types';
 import classname from 'classnames';
-import BackButton from 'assets/images/arrow-left.png';
+import CloseButton from 'assets/images/icon-close.png';
 import './styles.scss';
 
 import { Button, InputForm } from 'components';
@@ -11,6 +11,7 @@ const Popup = ({
   id,
   value,
   name,
+  title,
   showPopup,
   submit,
   onChange,
@@ -18,6 +19,11 @@ const Popup = ({
   handleClickClosePopup,
   children
 }) => {
+
+  const onClickClosePopup = () => {
+    handleClickClosePopup();
+    document.body.classList.remove('remove-scroll');
+  }
   const classNames = classname('m-popup', className, {
     'show-popup': showPopup,
     'release': !submit
@@ -30,12 +36,13 @@ const Popup = ({
             <button
               className='popup-button-close'
               type='button'
-              onClick={handleClickClosePopup}
+              onClick={onClickClosePopup}
             >
-              <img src={BackButton} alt='back-button' className='arrow-back' />
+              <img src={CloseButton} alt='back-button' className='arrow-close' />
             </button>
             {submit && (
               <div className='submit-popup'>
+                <h2>{title}</h2>
                 <InputForm 
                   id={id}
                   type='text'
@@ -55,15 +62,7 @@ const Popup = ({
             )}
             {!submit && (
               <div className='detail-popup'>
-                <h2>Release Pokemon ?</h2>
                 {children}
-                <Button
-                  className='popup-submit'
-                  type='button'
-                  onClick={onClick}
-                >
-                  Release
-                </Button>
               </div>
             )}
           </div>
@@ -77,6 +76,7 @@ Popup.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
+  title: PropTypes.string,
   value: PropTypes.string,
   showPopup: PropTypes.bool,
   submit: PropTypes.bool,
@@ -90,10 +90,11 @@ Popup.defaultProps = {
   className: '',
   id: '',
   name: '',
+  title: '',
   value: '',
   showPopup: false,
   submit: false,
-  onChange: '',
+  onChange: () => {},
   onClick: () => {},
   handleClickClosePopup: () => {},
   children: {}

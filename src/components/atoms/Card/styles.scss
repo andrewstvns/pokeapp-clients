@@ -2,15 +2,18 @@
 @import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
 
 .a-card {
-  max-width: 500px;
   width: 100%;
   height: auto;
   @include large {
     max-width: 250px;
     width: 100%;
-    height: 250px;
+    height: 180px;
   }
   img {
-    width: 400px;
+    margin: 0 auto;
+    width: 200px;
+    @include large {
+      width: 400px;
+    }
   }
 }

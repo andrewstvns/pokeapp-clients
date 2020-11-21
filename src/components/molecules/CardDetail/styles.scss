@@ -22,6 +22,9 @@
   }
   .card-detail {
     .a-card {
+      img {
+        width: 400px;
+      }
       @include medium {
         display: table-cell;
         width: 250px;

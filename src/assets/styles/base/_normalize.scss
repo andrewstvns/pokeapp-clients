@@ -25,59 +25,9 @@ body {
   width: 100%;
   font-family: "Lato", sans-serif;
 
-  &.no-transition {
-    overflow: hidden;
-
-    * {
-      transition: none !important;
-    }
-  }
-
   &.remove-scroll {
     overflow: hidden;
-  }
-
-  &.remove-scroll-ios {
-    overflow: hidden;
-
-    .m-type-form-section {
-      position: fixed;
-      @media only screen and (max-width: 896px) {
-        position: relative;
-      }
-    }
-
-    @media only screen and (max-width: 767px) {
-      position: fixed;
-      &.store-page {
-        @supports (-webkit-touch-callout: none) {
-          position: relative;
-          overflow-y: auto;
-        }
-      }
-    }
-  }
-  &.remove-scroll-dropdown-ios {
-    overflow: hidden;
-
-    .m-type-form-section {
-      position: fixed;
-    }
-
-    @media only screen and (max-width: 767px) {
-      &.store-page {
-        @supports (-webkit-touch-callout: none) {
-          position: relative;
-          overflow-y: auto;
-        }
-      }
-    }
-  }
-
-  &.scroll-off {
-    overflow: hidden;
-    padding-right: 0px;
-  }
+  };
 }
 
 /**

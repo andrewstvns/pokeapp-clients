@@ -7,13 +7,15 @@
   border-radius: 20px;
   margin-bottom: 24px;
   margin-right: 24px;
-  border: 1px solid #989c97;
+  background-color: #ff4f4f;
+  color: #fff;
+  border: 1px solid #ff4747;
   cursor: pointer;
   font-size: 14px;
   text-transform: capitalize;
   transition: all .25s ease;
   &:hover {
-    background-color: #989c97;
+    background-color: #ff7575;
   }
   &.route {
     position: relative;

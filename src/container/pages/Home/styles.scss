@@ -2,13 +2,90 @@
 @import "../../../assets/styles/helper/function", "../../../assets/styles/helper/mixin",  "../../../assets/styles/helper/variables";
 
 .p-home {
-  background-color: #1f1f1f;
+  // background-color: #1f1f1f;
+  background: url('../../../assets/images/background.jpg') left top repeat;
   min-height: 100vh;
   .home-content {
     display: table;
     width: 100%;
-    background-color: #7b7d7a;
     min-height: 100vh;
+    .m-card-detail {
+      height: 500px;
+      &.show-loading-animation {
+        margin: 24px auto;
+        .container-skeleton {
+          height: 750px;
+          @include large {
+            height: 600px;
+          }
+        }
+        .card-detail {
+          margin: 0 4rem;
+          .a-card {
+            vertical-align: top;
+            .rect-shape {
+              height: 200px !important;
+              border-radius: 10px;
+              @include large {
+                width: 200px !important;
+              }
+            }
+          }
+        }
+        .card-detail-header {
+          padding: 0;
+          margin-bottom: 4rem;
+        }
+        .card-information {
+          display: table-cell;
+          @include medium {
+            padding-left: 2.4rem;
+          }
+          .card-types {
+            li {
+              list-style-type: none;
+              display: inline-block;
+              margin: 2.4rem 0;
+              @include medium {
+                margin-top: 0;
+                margin-bottom: 2.4rem;
+              }
+              .rect-shape {
+                width: 40px !important;
+                height: 20px !important;
+                border-radius: 5px;
+              }
+            }
+          }
+          .card-stats {
+            .rect-shape {
+              width: 250px !important;
+              height: 20px !important;
+              margin-bottom: 12px;
+              @include large {
+                width: 400px !important;
+              }
+            }
+          }
+        }
+        .card-moves-header {
+          margin-top: 2rem;
+          height: 50px;
+          padding: 0;
+          .card-moves-list {
+            padding: 4rem;
+            .rect-shape {
+              width: 250px !important;
+              height: 20px !important;
+              margin-bottom: 12px;
+              @include medium {
+                width: 400px !important;
+              }
+            }
+          }
+        }
+      }
+    }
   }
   .content-pokemon-list,
   .content-my-pokemon-list {
@@ -65,7 +142,7 @@
         border-radius: 50%;
         transition: all .25s ease;
         &:hover {
-          background-color: rgba(0,0,0,.27)
+          left: -12px;
         }
       }
     }
@@ -73,6 +150,7 @@
       display: flex;
       justify-content: center;
       .m-card-detail {
+        box-shadow: 10px 10px 10px 0 rgba(#000, 0.2);
         .card-information {
           display: table-cell;
           vertical-align: middle;
@@ -108,8 +186,11 @@
                 background-color: #ebeae8;
                 margin-bottom: 12px;
                 border-radius: 20px;
-                width: 75%;
+                width: 100%;
                 height: 20px;
+                @include large {
+                  width: 75%;
+                }
               }
               .card-stats-bar {
                 background-color: green;
@@ -158,8 +239,85 @@
   }
   .pokemon-list {
     display: inline-block;
-    width: 20%;
+    width: 100%;
     margin-bottom: 12px;
     padding: 0 12px;
+    @include large {
+      display: inline-block;
+      width: 20%;
+      margin-bottom: 12px;
+      padding: 0 12px;
+    }
+  }
+  .content-my-pokemon-list {
+    .m-popup {
+      &.release {
+        .content-popup {
+          height: 350px;
+        }
+        .pokemon-info {
+          height: 220px;
+          h2 {
+            margin-bottom: 24px;
+          }
+          p {
+            text-align: left;
+            font-size: 16px;
+            font-weight: 800;
+          }
+        }
+        .my-pokemon-info-list {
+          text-align: left;
+          p {
+            display: inline-block;
+            text-transform: capitalize;
+            width: 180px;
+            font-size: 16px;
+            font-weight: 400;
+            @include large {
+              width: 250px;
+            }
+          }
+          .button-confirmation {
+            width: 14px;
+            height: 14px;
+            background-color: transparent;
+            position: relative;
+            cursor: pointer;
+            img {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
+        }
+      }
+      &.confirmation {
+        .content-popup {
+          padding: 64px;
+          height: 250px;
+          @include large {
+            height: 150px;
+          }
+        }
+        .a-button {
+          &.release {
+            background-color: #10c23f;
+            border-color: #10c23f;
+            &:hover {
+              background-color: #05e33f;
+              border-color: #05e33f;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.load-skeleton {
+  .row {
+    margin: 0;
   }
 }
